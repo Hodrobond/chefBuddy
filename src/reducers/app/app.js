@@ -1,51 +1,83 @@
 /**
  * Created by adam.kazberuk on 12/6/2016.
  */
-const defaultNotifications = {
-      loss: false,
-      victory: false,
-      victoryAcknowledged: false
+const twoRecipes = () => {
+  let recipes = [
+    {
+      'name': 'Chicken Parmesan',
+      'preparationTime':{
+        'minutes': 10,
+        'hours': 0
+      },
+      'cookingTime': {
+        'minutes': 15,
+        'hours': 0
+      },
+      'ingredients': [{
+          'name': 'chicken',
+          'quantity': '1',
+          'measurement': 'lb'
+        },
+        {
+          'name': 'parmesan',
+          'quantity': '1',
+          'measurement': 'cup'
+        }],
+      'instructions': {
+        'preparation':[
+          'tenderize chicken',
+          'get parmesan cheese'
+        ],
+        'cooking':[
+          'put chicken in pan for 10 minutes',
+          'add parmesan and cook for 5 more minutes'
+        ]
+      }
+    },
+    {
+      'name': 'Carrot Soup',
+      'preparationTime':{
+        'minutes': 10,
+        'hours': 0
+      },
+      'cookingTime': {
+        'minutes': 15,
+        'hours': 0
+      },
+      'ingredients': [{
+          'name': 'carrot',
+          'quantity': '1',
+          'measurement': 'lb'
+        },
+        {
+          'name': 'water',
+          'quantity': '1',
+          'measurement': 'cup'
+        }],
+        'instructions': {
+          'preparation':[
+            'tenderize carrot',
+            'get water from well'
+          ],
+          'cooking':[
+            'put carrot in water and simmer for 14 minutes',
+            'add one more carrot, simmer for 1 minute'
+          ]
+        }
+    }
+  ];
+  return recipes;
 }
 
 const init = () => {
- return defaultNotifications
+ return twoRecipes();
 }
 
 const App = (state = 0, action) => {
-  if(state === 0 || action === 'NEW_GAME'){
+  if(state === 0){
     return init();
   }
-  let newNotifications;
-  switch(action.type){
-    case 'WIN_GAME':
-      newNotifications = {...state,
-                      victory: true}
-      break;
-    case 'LOSE_GAME':
-      newNotifications = {...state,
-                      loss: true}
-      break;
-    case 'CONTINUE_GAME':
-      newNotifications = {...state,
-                      victoryAcknowledged: true}
-      break;
-    case 'NEW_GAME':
-      newNotifications = defaultNotifications;
-      break;
-    default:
-      newNotifications = state;
-      break;
-  }
-
-  return newNotifications;
+  return state;
 }
 
-const distinctAppFilter = (action, currentState, previousState) => {
-  return true;
-}
-
-const undoableApp = undoable(App,
-    {filter: distinctAppFilter}
-)
-
-export default undoableApp;
+export default App;
