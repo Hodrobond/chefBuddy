@@ -13,13 +13,11 @@ const init = () => {
       },
       'ingredients': [{
           'name': 'chicken',
-          'quantity': '1',
-          'measurement': 'lb'
+          'quantity': '1 lb'
         },
         {
           'name': 'parmesan',
-          'quantity': '1',
-          'measurement': 'cup'
+          'quantity': '1 cup'
         }],
       'instructions': {
         'preparation':[
@@ -45,13 +43,11 @@ const init = () => {
       },
       'ingredients': [{
           'name': 'carrot',
-          'quantity': '1',
-          'measurement': 'lb'
+          'quantity': '1 lb'
         },
         {
           'name': 'water',
-          'quantity': '1',
-          'measurement': 'cup'
+          'quantity': '1 cup'
         }],
         'instructions': {
           'preparation':[

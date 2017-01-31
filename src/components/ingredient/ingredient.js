@@ -9,7 +9,7 @@ class Ingredient extends Component{
   render(){
 
     return(
-      <div className={"ingredient"}>{this.props.name}: {this.props.quantity} {this.props.measurement}</div>
+      <div className={"ingredient"}>{this.props.name}: {this.props.quantity}</div>
     )
   }
 }
