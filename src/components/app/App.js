@@ -16,7 +16,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <RecipeList recipes={this.props.App}/>
+        <RecipeList/>
       </div>
     );
   }
@@ -24,7 +24,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    App: state.app
+    App: state.App
   }
 }
 
