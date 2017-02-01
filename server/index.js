@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const router = express.Router();
 const recipes = require('./recipes');
+const ingredients = require('./ingredients');
 
 const PORT = process.env.PORT || 9000;
 
@@ -16,4 +17,5 @@ MongoClient.connect('mongodb://default:asdf@ds139619.mlab.com:39619/chefbuddy', 
     console.log(`App listening on port ${PORT}!`);
   });
   app.use('/api', recipes);
+  app.use('/api', ingredients);
 })
