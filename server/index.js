@@ -16,6 +16,7 @@ MongoClient.connect('mongodb://default:asdf@ds139619.mlab.com:39619/chefbuddy', 
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
   });
+  app.use(express.static(__dirname + '/'));
   app.use('/api', recipes);
   app.use('/api', ingredients);
 })
