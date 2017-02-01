@@ -6,6 +6,20 @@ import './App.css';
 import RecipeList from '../recipe/recipeList/recipeList';
 
 class App extends Component {
+  componentDidMount(){
+    fetch("/api/recipes")
+      .then(function(response){
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status);
+          return;
+        }
+
+          // Examine the text in the response
+        response.json().then(function(data) {
+          console.log(data);
+        });
+      })
+  }
   render() {
     return (
       <div className="App">
