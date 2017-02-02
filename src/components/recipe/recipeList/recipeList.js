@@ -10,6 +10,13 @@ import {startLoading, finishLoading} from '../../../actions/loader'
 import './recipeList.css'
 
 class recipeList extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      recipes: []
+    }
+  }
+
   componentDidMount(){
     var self = this;
     self.props.startLoading();
@@ -26,6 +33,7 @@ class recipeList extends Component{
             recipes: data
           })
           self.props.finishLoading();
+          console.log(self);
         });
       })
   }
@@ -34,7 +42,7 @@ class recipeList extends Component{
     return(
       <div className="recipe-list">
         <div className="recipes">
-            {this.props.Recipe.map((x, i) =>
+            {this.state.recipes.map((x, i) =>
               <Individual name={x.name}
                           ingredients={x.ingredients}
                           instructions={x.instructions}
@@ -50,7 +58,7 @@ class recipeList extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    Recipe: state.Recipe
+
   }
 }
 
