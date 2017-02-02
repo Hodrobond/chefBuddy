@@ -2,13 +2,17 @@
  * Created by adam.kazberuk on 1/25/2017.
  */
 import React, { PropTypes, Component } from 'react'
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux'
 import Individual from '../individual/individual';
+import {startLoading, finishLoading} from '../../../actions/loader'
+
 import './recipeList.css'
 
 class recipeList extends Component{
   componentDidMount(){
     var self = this;
+    self.props.startLoading();
     fetch("/api/recipes")
       .then(function(response){
         if (response.status !== 200) {
@@ -18,7 +22,10 @@ class recipeList extends Component{
 
           // Examine the text in the response
         response.json().then(function(data) {
-          self.props.recipes = data;
+          self.setState({
+            recipes: data
+          })
+          self.props.finishLoading();
         });
       })
   }
@@ -47,5 +54,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ startLoading, finishLoading}, dispatch);
+}
 
-export default connect(mapStateToProps)(recipeList)
+export default connect(mapStateToProps, mapDispatchToProps)(recipeList)
