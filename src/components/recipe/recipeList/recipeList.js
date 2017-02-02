@@ -7,6 +7,22 @@ import Individual from '../individual/individual';
 import './recipeList.css'
 
 class recipeList extends Component{
+  componentDidMount(){
+    var self = this;
+    fetch("/api/recipes")
+      .then(function(response){
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status);
+          return;
+        }
+
+          // Examine the text in the response
+        response.json().then(function(data) {
+          self.props.recipes = data;
+        });
+      })
+  }
+
   render(){
     return(
       <div className="recipe-list">

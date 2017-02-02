@@ -4,36 +4,14 @@ import {connect} from 'react-redux'
 import logo from './logo.svg';
 import './App.css';
 import RecipeList from '../recipe/recipeList/recipeList';
+import Loader from '../loader/loader';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
 
 class App extends Component {
 
 
   componentDidMount(){
-    fetch("/api/recipes")
-      .then(function(response){
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status);
-          return;
-        }
 
-          // Examine the text in the response
-        response.json().then(function(data) {
-          console.log(data);
-        });
-      })
-    fetch("/api/ingredients")
-      .then(function(response){
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status);
-          return;
-        }
-
-          // Examine the text in the response
-        response.json().then(function(data) {
-          console.log(data);
-        });
-      })
   }
   render() {
     return (
@@ -47,6 +25,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <RecipeList/>
+        <Loader/>
       </div>
     );
   }
